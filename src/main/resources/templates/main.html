@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All tickets</title>
+    <style>
+        select {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <form method="post">
+        <select name="kyda">
+            <option value="">--</option>
+            <option th:each="country : ${countries}">
+                <a th:text="${country}"></a>
+            </option>
+        </select>
+        <select name="otkyda">
+            <option value="">--</option>
+            <option th:each="country : ${countries}">
+                <a th:text="${country}"></a>
+            </option>
+        </select>
+        <select name="cost">
+            <option value="">--</option>
+            <option th:each="cost : ${costs}">
+                <a th:text="${cost}"></a>
+            </option>
+        </select>
+        <button type="submit">Add</button>
+    </form>
+</div>
+<div th:each="ticket : ${tickets}">
+    <pre>
+         ID:<a th:text="${ticket.getId()}">Id</a>
+         FROM: <a th:text="${ticket.getOtkyda()}">From</a>
+         TO:<a th:text="${ticket.getKyda()}">To</a>
+         CHOSEN COST:<a th:text="${ticket.getCost()}">Cost</a>
+         DEPARTURE DATE:<a th:text="${ticket.getCalendar()}">Calendar</a>
+
+    </pre>
+
+</div>
+
+</body>
+</html>
